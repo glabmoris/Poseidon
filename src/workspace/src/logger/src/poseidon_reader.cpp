@@ -7,7 +7,7 @@ int main(int argc,char** argv){
 		exit(1);
 	}
 	std::string filePath = argv[1];
-	PoseidonBinaryReader reader(filePath);
+	LoggerBinaryReader reader(filePath);
 	reader.read();
 	
 	return 0;

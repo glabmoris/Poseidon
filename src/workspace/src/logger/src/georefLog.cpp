@@ -8,11 +8,11 @@
 #include <SbetProcessor.hpp>
 #include <filesystem>
 
-class PoseidonBinaryLidarGeoref : public PoseidonBinaryReader, public SbetProcessor{
+class LoggerBinaryLidarGeoref : public LoggerBinaryReader, public SbetProcessor{
 	public:
-		PoseidonBinaryLidarGeoref(std::string & filePath, Eigen::Vector3d &leverArm, Eigen::Matrix3d &boresight, std::string sbetFilePath) : PoseidonBinaryReader(filePath), 
+		LoggerBinaryLidarGeoref(std::string & filePath, Eigen::Vector3d &leverArm, Eigen::Matrix3d &boresight, std::string sbetFilePath) : LoggerBinaryReader(filePath), 
 																													leverArm(leverArm), boresight(boresight), sbetFilePath(sbetFilePath){}
-		~PoseidonBinaryLidarGeoref(){}
+		~LoggerBinaryLidarGeoref(){}
 		
 		void processEntry(SbetEntry * entry){
 			
@@ -440,7 +440,7 @@ int main(int argc,char** argv){
     boresight.heading = heading;
     Georeference::generateDcmMatrix(boresightMatrix, boresight);
     
-	PoseidonBinaryLidarGeoref georeferencer(fileName, leverArm, boresightMatrix, sbetFilePath);
+	LoggerBinaryLidarGeoref georeferencer(fileName, leverArm, boresightMatrix, sbetFilePath);
 	
 	if(activateFilter){
 		georeferencer.setFilter(minAngle, maxAngle, minDistance, maxDistance);
